@@ -1,6 +1,6 @@
 JSONPath Online (jsonpath.online)
 
-Live: `https://jsonpath.online`
+[Live](https://jsonpath.online): `https://jsonpath.online`
 
 ## Local dev
 
