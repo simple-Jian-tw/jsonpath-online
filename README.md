@@ -1,53 +1,51 @@
-JSONPath Online (jsonpath.online)
+## JSONPath Online
 
-[Live](https://jsonpath.online): `https://jsonpath.online`
+[jsonpath.online](https://jsonpath.online) offers a fast way to try JSONPath expressions directly in the browser.
 
-## Local dev
+### JSONPath Overview
 
-- `npm install`
-- `npm run dev`
+JSONPath is a query language for JSON documents inspired by XPath. Typical building blocks include:
 
-## Static export preview
+- `$.store.book[0].title`: dot notation and array indices traverse object trees.
+- `$..price`: double-dot syntax performs recursive descent to find keys anywhere in the structure.
+- `$[?(@.category == "fiction")]`: filters extract nodes that meet custom predicates.
+- `$.store.book[*].author`: the `*` wildcard matches every property or index at a level.
 
-- `npm run build`
-- `npm run preview` (serves the `out/` folder)
+Combining these operators lets you rapidly locate data in large JSON payloads, making JSONPath a handy tool for API debugging, data transformations, and teaching.
 
-## Cloudflare Pages
+### Project Highlights
 
-- Build command: `npm run build`
-- Output directory: `out`
+This repository powers the JSONPath Online web app. It is a Next.js project that statically exports to Cloudflare Pages and ships:
 
-## Getting Started
+- Live playground: type JSON and JSONPath side-by-side to see matches instantly.
+- Built-in examples: curated snippets demonstrate common patterns and edge cases.
+- Clean UI copy: English-first interface that is easy to share in docs or demos.
 
-First, run the development server:
+## Development & Usage
+
+### Local Development
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) to preview changes in real time; the main page lives at `src/app/page.tsx` and hot reloads on save.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Build & Preview
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm run build
+npm run preview   # serves the static out/ folder
+```
 
-## Learn More
+### Cloudflare Pages Deployment
 
-To learn more about Next.js, take a look at the following resources:
+- Build command：`npm run build`
+- Output directory：`out`
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Each build emits a fully static bundle that can be hosted on any CDN or static hosting platform.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Contributing
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Issues and pull requests are welcome for bug fixes, feature ideas, and quality-of-life improvements. Please consider running `npm run lint`/`npm run test` (when available) before opening a PR to keep the project healthy.
