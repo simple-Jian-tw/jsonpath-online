@@ -1,5 +1,7 @@
 JSONPath Online (jsonpath.online)
 
+Live: `https://jsonpath.online`
+
 ## Local dev
 
 - `npm install`
