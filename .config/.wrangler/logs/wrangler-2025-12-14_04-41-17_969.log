@@ -1,0 +1,32 @@
+
+--- 2025-12-14T04:41:18.075Z debug
+🪵  Writing logs to "/home/jian/codes/jsonpath-online/.config/.wrangler/logs/wrangler-2025-12-14_04-41-17_969.log"
+---
+
+--- 2025-12-14T04:41:18.075Z debug
+Metrics dispatcher: Posting data {"deviceId":"f4c789c6-fc66-41ab-95e3-f1230f0b5b6a","event":"wrangler command started","timestamp":1765687278074,"properties":{"amplitude_session_id":1765687278073,"amplitude_event_id":0,"wranglerVersion":"4.53.0","osPlatform":"Linux","osVersion":"#37~24.04.1-Ubuntu SMP PREEMPT_DYNAMIC Thu Nov 20 10:25:38 UTC 2","nodeVersion":20,"packageManager":"npm","isFirstUsage":true,"configFileType":"none","isCI":false,"isPagesCI":false,"isWorkersCI":false,"isInteractive":false,"hasAssets":false,"argsUsed":["version"],"argsCombination":"version","command":"wrangler ","args":{}}}
+---
+
+--- 2025-12-14T04:41:18.081Z debug
+.env file not found at "/home/jian/codes/jsonpath-online/.env". Continuing... For more details, refer to https://developers.cloudflare.com/workers/wrangler/system-environment-variables/
+---
+
+--- 2025-12-14T04:41:18.081Z debug
+.env file not found at "/home/jian/codes/jsonpath-online/.env.local". Continuing... For more details, refer to https://developers.cloudflare.com/workers/wrangler/system-environment-variables/
+---
+
+--- 2025-12-14T04:41:18.081Z log
+4.53.0
+---
+
+--- 2025-12-14T04:41:18.101Z debug
+Metrics dispatcher: Posting data {"deviceId":"f4c789c6-fc66-41ab-95e3-f1230f0b5b6a","event":"wrangler command completed","timestamp":1765687278101,"properties":{"amplitude_session_id":1765687278073,"amplitude_event_id":1,"wranglerVersion":"4.53.0","osPlatform":"Linux","osVersion":"#37~24.04.1-Ubuntu SMP PREEMPT_DYNAMIC Thu Nov 20 10:25:38 UTC 2","nodeVersion":20,"packageManager":"npm","isFirstUsage":false,"configFileType":"none","isCI":false,"isPagesCI":false,"isWorkersCI":false,"isInteractive":false,"hasAssets":false,"argsUsed":["version"],"argsCombination":"version","command":"wrangler ","args":{},"durationMs":42,"durationSeconds":0.042,"durationMinutes":0.0007}}
+---
+
+--- 2025-12-14T04:41:18.104Z debug
+Metrics dispatcher: Failed to send request: fetch failed
+---
+
+--- 2025-12-14T04:41:18.104Z debug
+Metrics dispatcher: Failed to send request: fetch failed
+---
