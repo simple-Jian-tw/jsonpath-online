@@ -26,7 +26,7 @@ export function useJsonPath(jsonText: string, path: string) {
     try {
       const result = JSONPath({
         path: path?.trim() || "$",
-        json: parsed as unknown,
+        json: parsed as object,
         wrap: true,
       });
       return { ok: true, valueText: JSON.stringify(result, null, 2) };
