@@ -6,45 +6,44 @@ import { Search } from "lucide-react";
 import { JsonEditor } from "@/components/JsonEditor";
 import { Toast } from "@/components/Toast";
 import { useDebouncedValue } from "@/hooks/useDebouncedValue";
-import { useJsonPath } from "@/hooks/useJsonPath";
+import { useJmesPath } from "@/hooks/useJmesPath";
 import { useMediaQuery } from "@/hooks/useMediaQuery";
-import { generateCode } from "@/lib/codegen";
+import { generateJmesCode } from "@/lib/jmes-codegen";
+import { JMES_DEFAULT_EXPR, JMES_DEFAULT_JSON, JMES_QUICK_EXAMPLES } from "@/lib/jmes-sample";
 import { cn } from "@/lib/cn";
 import type { LanguageSlug } from "@/lib/languages";
-import { DEFAULT_JSON_TEXT, DEFAULT_PATH } from "@/lib/sample-json";
 
 const CODE_TABS: { slug: LanguageSlug; label: string }[] = [
-  { slug: "java", label: "Java" },
   { slug: "python", label: "Python" },
-  { slug: "go", label: "Go" },
   { slug: "javascript", label: "JavaScript" },
+  { slug: "go", label: "Go" },
+  { slug: "java", label: "Java" },
   { slug: "php", label: "PHP" },
   { slug: "csharp", label: "C#" },
 ];
 
-export function JsonPathPlayground({
-  defaultTab = "javascript",
+export function JmesPathPlayground({
+  defaultTab = "python",
 }: {
   defaultTab?: LanguageSlug;
 }) {
   const isDesktop = useMediaQuery("(min-width: 768px)");
-
-  const [jsonText, setJsonText] = useState(DEFAULT_JSON_TEXT);
-  const [path, setPath] = useState(DEFAULT_PATH);
-  const debouncedPath = useDebouncedValue(path, 300);
+  const [jsonText, setJsonText] = useState(JMES_DEFAULT_JSON);
+  const [expression, setExpression] = useState(JMES_DEFAULT_EXPR);
+  const debouncedExpr = useDebouncedValue(expression, 300);
 
   const [activeTab, setActiveTab] = useState<LanguageSlug>(defaultTab);
   useEffect(() => {
     setActiveTab(defaultTab);
   }, [defaultTab]);
 
-  const { ok, valueText, error } = useJsonPath(jsonText, debouncedPath);
+  const { ok, valueText, error } = useJmesPath(jsonText, debouncedExpr);
   const [toast, setToast] = useState<{ kind: "info" | "error"; message: string } | null>(null);
 
   useEffect(() => {
-    const initialPath = new URLSearchParams(window.location.search).get("path");
-    if (initialPath && initialPath.trim()) {
-      setPath(initialPath.trim());
+    const initialExpr = new URLSearchParams(window.location.search).get("expr");
+    if (initialExpr && initialExpr.trim()) {
+      setExpression(initialExpr.trim());
     }
   }, []);
 
@@ -55,8 +54,8 @@ export function JsonPathPlayground({
   }, [ok, error]);
 
   const code = useMemo(
-    () => generateCode(activeTab, debouncedPath?.trim() || "$"),
-    [activeTab, debouncedPath],
+    () => generateJmesCode(activeTab, debouncedExpr?.trim() || "*"),
+    [activeTab, debouncedExpr],
   );
 
   async function onCopy(text: string) {
@@ -69,8 +68,13 @@ export function JsonPathPlayground({
       const parsed = JSON.parse(jsonText);
       setJsonText(JSON.stringify(parsed, null, 2));
     } catch {
-      // Let the existing inline error message guide the user.
+      // keep inline error guidance
     }
+  }
+
+  function applyExample(expr: string) {
+    setExpression(expr);
+    setJsonText((prev) => prev || JMES_DEFAULT_JSON);
   }
 
   return (
@@ -85,10 +89,10 @@ export function JsonPathPlayground({
           <div className="w-full md:max-w-xl">
             <div className="flex items-center justify-between gap-4">
               <label className="text-sm font-medium text-black/80 dark:text-white/80">
-                JSONPath
+                JMESPath expression
               </label>
               <span className="hidden text-xs text-black/50 dark:text-white/40 sm:inline">
-                Example: <span className="font-mono">$.store.book[*].title</span>
+                Example: <span className="font-mono">people[?age &gt; `30`].name</span>
               </span>
             </div>
             <div
@@ -99,15 +103,12 @@ export function JsonPathPlayground({
               )}
             >
               <Search className="h-4 w-4 shrink-0 text-black/40 dark:text-white/40" />
-              <span className="hidden rounded-md bg-black/5 px-1.5 py-1 font-mono text-xs text-black/60 dark:bg-white/10 dark:text-white/60 sm:inline">
-                $
-              </span>
               <input
-                value={path}
-                onChange={(e) => setPath(e.target.value)}
+                value={expression}
+                onChange={(e) => setExpression(e.target.value)}
                 spellCheck={false}
                 className="w-full bg-transparent font-mono text-[13px] text-black outline-none placeholder:text-black/40 dark:text-white dark:placeholder:text-white/30"
-                placeholder="$.store.book[*]"
+                placeholder="people[?age > `30`].name"
               />
             </div>
           </div>
@@ -131,9 +132,25 @@ export function JsonPathPlayground({
           </div>
         </div>
 
-        {!ok && (
-          <p className="mt-2 text-sm text-red-500">{error}</p>
-        )}
+        {!ok && <p className="mt-2 text-sm text-red-500">{error}</p>}
+
+        <div className="mt-3">
+          <div className="flex flex-wrap gap-2">
+            {JMES_QUICK_EXAMPLES.map((ex) => (
+              <button
+                key={ex.expression}
+                type="button"
+                onClick={() => applyExample(ex.expression)}
+                className="flex items-center gap-2 rounded-full border border-black/10 bg-white/60 px-3 py-1.5 text-xs text-black/80 hover:bg-black/5 dark:border-white/10 dark:bg-black/30 dark:text-white/80 dark:hover:bg-white/10"
+              >
+                <span className="font-medium">{ex.title}</span>
+                <span className="hidden text-[11px] text-black/50 dark:text-white/50 sm:inline">
+                  {ex.description}
+                </span>
+              </button>
+            ))}
+          </div>
+        </div>
 
         <div className="mt-4 grid gap-4 md:grid-cols-2">
           <div className="min-w-0">
@@ -169,17 +186,12 @@ export function JsonPathPlayground({
                 Result
               </h2>
               <span className="text-xs text-black/50 dark:text-white/40">
-                JSON array of matches
+                JSON output
               </span>
             </div>
             <div className="h-[360px] overflow-hidden rounded-xl border border-black/10 dark:border-white/10">
               {isDesktop ? (
-                <JsonEditor
-                  language="json"
-                  value={ok ? valueText : ""}
-                  readOnly
-                  height={360}
-                />
+                <JsonEditor language="json" value={ok ? valueText : ""} readOnly height={360} />
               ) : (
                 <pre className="h-full overflow-auto bg-white p-3 font-mono text-xs text-black dark:bg-black/40 dark:text-white">
                   {ok ? valueText : ""}

@@ -53,8 +53,29 @@ export default function HomePage() {
 
       <SyntaxTable />
 
+      <section className="mt-10 rounded-2xl border border-black/10 bg-white/50 p-5 dark:border-white/10 dark:bg-black/20">
+        <div className="flex flex-col gap-2 md:flex-row md:items-center md:justify-between">
+          <div>
+            <p className="text-xs font-semibold uppercase tracking-[0.08em] text-black/60 dark:text-white/60">
+              Also exploring JSON queries?
+            </p>
+            <h2 className="text-lg font-semibold text-black dark:text-white">
+              Try our new JMESPath Online suite
+            </h2>
+            <p className="text-sm text-black/70 dark:text-white/70">
+              Filter AWS CLI output, test JMESPath expressions, and export CSV instantly.
+            </p>
+          </div>
+          <Link
+            href="/jmespath"
+            className="inline-flex items-center rounded-lg border border-black/10 bg-white px-4 py-2 text-sm font-semibold text-black/80 shadow-sm hover:bg-black/5 dark:border-white/10 dark:bg-black/40 dark:text-white/80 dark:hover:bg-white/10"
+          >
+            Open JMESPath →
+          </Link>
+        </div>
+      </section>
+
       <Faq items={getGenericFaq()} />
     </Container>
   );
 }
-

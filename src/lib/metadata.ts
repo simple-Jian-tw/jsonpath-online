@@ -5,6 +5,11 @@ export function baseMetadata(): Metadata {
   return {
     metadataBase: new URL(SITE.url),
     alternates: { canonical: "/" },
+    icons: {
+      icon: "/icon.png",
+      shortcut: "/favicon.ico",
+      apple: "/apple-touch-icon.png",
+    },
     openGraph: {
       type: "website",
       url: SITE.url,
@@ -44,4 +49,3 @@ export function buildMetadata({
     },
   };
 }
-

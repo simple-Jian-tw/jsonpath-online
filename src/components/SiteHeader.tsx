@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { Container } from "@/components/Container";
 import { SITE } from "@/lib/site";
@@ -13,10 +14,15 @@ export function SiteHeader() {
     <header className="border-b border-black/10 bg-white/50 backdrop-blur dark:border-white/10 dark:bg-black/20">
       <Container className="flex h-14 items-center justify-between gap-4">
         <Link href="/" className="flex items-center gap-2 font-semibold">
-          <span className="rounded-md border border-black/10 px-2 py-1 text-xs dark:border-white/10">
-            {"{}"}
-          </span>
-          <span>{SITE.domain}</span>
+          <Image
+            src="/logo.png"
+            alt={`${SITE.name} logo`}
+            width={28}
+            height={28}
+            className="h-8 w-8 rounded-md"
+            priority
+          />
+          <span className="text-sm sm:text-base">{SITE.domain}</span>
         </Link>
 
         <nav className="hidden items-center gap-6 text-sm md:flex">
@@ -45,4 +51,3 @@ export function SiteHeader() {
     </header>
   );
 }
-
