@@ -13,7 +13,7 @@ const MonacoEditor = dynamic(() => import("@monaco-editor/react"), {
 export type JsonEditorProps = {
   value: string;
   onChange?: (value: string) => void;
-  language: "json" | "plaintext" | "javascript";
+  language: "json" | "plaintext" | "javascript" | "html" | "xml";
   readOnly?: boolean;
   height?: string | number;
 };
@@ -51,4 +51,3 @@ export function JsonEditor({
     />
   );
 }
-

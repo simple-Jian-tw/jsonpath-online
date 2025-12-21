@@ -4,9 +4,10 @@ import { Container } from "@/components/Container";
 import { SITE } from "@/lib/site";
 
 const nav = [
-  { href: "/", label: "Evaluator" },
-  { href: "/docs", label: "Cheatsheet" },
-  { href: "/integrations", label: "Integrations" },
+  { href: "/", label: "JSONPath" },
+  { href: "/jmespath", label: "JMESPath" },
+  { href: "/xpath", label: "XPath" },
+  { href: "/docs", label: "Docs" },
 ];
 
 export function SiteHeader() {

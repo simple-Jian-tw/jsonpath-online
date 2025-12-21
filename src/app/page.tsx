@@ -75,6 +75,28 @@ export default function HomePage() {
         </div>
       </section>
 
+      <section className="mt-8 rounded-2xl border border-purple-200 bg-gradient-to-r from-purple-50 to-purple-100 p-5 dark:border-purple-900 dark:from-purple-950/30 dark:to-purple-900/20">
+        <div className="flex flex-col gap-2 md:flex-row md:items-center md:justify-between">
+          <div>
+            <p className="text-xs font-semibold uppercase tracking-[0.08em] text-purple-700 dark:text-purple-200">
+              New · XPath Online
+            </p>
+            <h2 className="text-lg font-semibold text-black dark:text-white">
+              XPath tester for Selenium, Playwright, and web scraping
+            </h2>
+            <p className="text-sm text-black/70 dark:text-white/70">
+              Paste HTML or XML, validate XPath expressions with live highlights, and copy Selenium/Playwright code.
+            </p>
+          </div>
+          <Link
+            href="/xpath"
+            className="inline-flex items-center rounded-lg bg-purple-600 px-4 py-2 text-sm font-semibold text-white shadow-lg shadow-purple-500/25 hover:bg-purple-700"
+          >
+            Open XPath →
+          </Link>
+        </div>
+      </section>
+
       <Faq items={getGenericFaq()} />
     </Container>
   );

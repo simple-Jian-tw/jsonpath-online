@@ -19,6 +19,16 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${SITE.url}/jmespath/functions/`, lastModified, changeFrequency: "weekly", priority: 0.8 },
     { url: `${SITE.url}/jmespath/vs-jsonpath/`, lastModified, changeFrequency: "weekly", priority: 0.7 },
     { url: `${SITE.url}/jmespath/vs-jq/`, lastModified, changeFrequency: "weekly", priority: 0.7 },
+    { url: `${SITE.url}/xpath/`, lastModified, changeFrequency: "weekly", priority: 1.0 },
+    { url: `${SITE.url}/xpath/selenium/`, lastModified, changeFrequency: "weekly", priority: 0.9 },
+    { url: `${SITE.url}/xpath/cheatsheet/`, lastModified, changeFrequency: "weekly", priority: 0.9 },
+    { url: `${SITE.url}/xpath/examples/`, lastModified, changeFrequency: "weekly", priority: 0.8 },
+    { url: `${SITE.url}/xpath/vs-css-selector/`, lastModified, changeFrequency: "weekly", priority: 0.7 },
+    { url: `${SITE.url}/xpath/chrome-devtools/`, lastModified, changeFrequency: "weekly", priority: 0.7 },
+    { url: `${SITE.url}/xpath/tutorial/`, lastModified, changeFrequency: "weekly", priority: 0.7 },
+    { url: `${SITE.url}/xpath/functions/`, lastModified, changeFrequency: "weekly", priority: 0.7 },
+    { url: `${SITE.url}/xpath/axes/`, lastModified, changeFrequency: "weekly", priority: 0.7 },
+    { url: `${SITE.url}/xpath/web-scraping/`, lastModified, changeFrequency: "weekly", priority: 0.7 },
   ];
 
   const langRoutes: MetadataRoute.Sitemap = LANGUAGES.map((l) => ({

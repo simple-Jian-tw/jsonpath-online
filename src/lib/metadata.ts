@@ -1,6 +1,13 @@
 import type { Metadata } from "next";
 import { SITE } from "@/lib/site";
 
+const defaultOgImage = {
+  url: `${SITE.url}/og-main.png`,
+  width: 1691,
+  height: 1691,
+  alt: `${SITE.name} screenshot`,
+};
+
 export function baseMetadata(): Metadata {
   return {
     metadataBase: new URL(SITE.url),
@@ -14,9 +21,11 @@ export function baseMetadata(): Metadata {
       type: "website",
       url: SITE.url,
       siteName: SITE.name,
+      images: [defaultOgImage],
     },
     twitter: {
       card: "summary_large_image",
+      images: [defaultOgImage.url],
     },
   };
 }
@@ -41,11 +50,13 @@ export function buildMetadata({
       url: canonical,
       siteName: SITE.name,
       type: "website",
+      images: [defaultOgImage],
     },
     twitter: {
       card: "summary_large_image",
       title,
       description,
+      images: [defaultOgImage.url],
     },
   };
 }
