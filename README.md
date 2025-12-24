@@ -1,6 +1,6 @@
 ## JSONPath Online
 
-[jsonpath.online](https://jsonpath.online) offers a fast way to try JSONPath expressions directly in the browser.
+https://jsonpath.online/ : JSONPath Online Evaluator & Validator offers. A fast way to try JSONPath expressions directly in the browser.
 
 ### JSONPath Overview
 
